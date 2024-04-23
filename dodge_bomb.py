@@ -1,5 +1,6 @@
 import os
 import sys
+import random
 import pygame as pg
 
 
@@ -13,6 +14,8 @@ DELTA={ # 辞書
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 
+
+
 def main():
     pg.display.set_caption("逃げろ！こうかとん")
     screen = pg.display.set_mode((WIDTH, HEIGHT))
@@ -20,6 +23,16 @@ def main():
     kk_img = pg.transform.rotozoom(pg.image.load("fig/3.png"), 0, 2.0)
     kk_rct = kk_img.get_rect()
     kk_rct.center = 900, 400
+
+    #爆弾
+    bd_img = pg.Surface((20, 20))
+    bd_img.set_colorkey((0, 0, 0))
+    pg.draw.circle(bd_img, (255, 0, 0), (10, 10), 10)
+    bd_rct = bd_img.get_rect()
+    bd_rct.center = random.randint(0, WIDTH), random.randint(0, HEIGHT)
+    vx, vy = +5, +5
+    vx, vy = +5, +5  # 横方向速度，縦方向速度
+
     clock = pg.time.Clock()
     tmr = 0
     while True:
@@ -34,6 +47,13 @@ def main():
             if key_lst[k]:
                 sum_mv[0] +=v[0]
                 sum_mv[1] +=v[1]
+        kk_rct.move_ip(sum_mv)
+        screen.blit(kk_img, kk_rct)
+        # 爆弾の移動と表示
+        bd_rct.move_ip(vx, vy)       
+        screen.blit(bd_img, bd_rct)
+        pg.display.update()
+        
         #if key_lst[pg.K_UP]:
         #    sum_mv[1] -= 5
         #if key_lst[pg.K_DOWN]:
