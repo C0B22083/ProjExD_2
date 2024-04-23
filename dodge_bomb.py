@@ -55,7 +55,7 @@ def main():
         for event in pg.event.get():
             if event.type == pg.QUIT: 
                 return
-            
+        #爆弾に触れてGame Over    
         if kk_rct.colliderect(bd_rct):
             print("Game Over")
             kk_img = pg.transform.rotozoom(pg.image.load("fig/8.png"), 0, 2.0)
