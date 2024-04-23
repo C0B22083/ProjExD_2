@@ -1,10 +1,11 @@
 import os
 import sys
+import time
 import random
 import pygame as pg
 
 
-WIDTH, HEIGHT = 600, 600
+WIDTH, HEIGHT = 1600, 900
 DELTA={ # 辞書
     pg.K_UP:(0,-5),
     pg.K_DOWN:(0,+5),
@@ -54,8 +55,15 @@ def main():
             
         if kk_rct.colliderect(bd_rct):
             print("Game Over")
+            kk_img = pg.transform.rotozoom(pg.image.load("fig/8.png"), 0, 2.0)
+            
+            fonto = pg.font.Font(None, 80)
+            txt = fonto.render("Game Over",
+                     True, (0,0,0))
+            screen.blit(txt, [800, 400])
+            pg.display.update()
+            time.sleep(5)
             return
-
 
         screen.blit(bg_img, [0, 0]) 
 
