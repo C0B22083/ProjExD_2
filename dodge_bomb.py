@@ -15,6 +15,9 @@ DELTA={ # 辞書
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 
+    
+
+
 def check_bound(obj_rct:pg.Rect) -> tuple[bool, bool]:
     """
     こうかとんRect，または，爆弾Rectの画面内外判定用の関数
@@ -56,7 +59,6 @@ def main():
         if kk_rct.colliderect(bd_rct):
             print("Game Over")
             kk_img = pg.transform.rotozoom(pg.image.load("fig/8.png"), 0, 2.0)
-            
             fonto = pg.font.Font(None, 80)
             txt = fonto.render("Game Over",
                      True, (0,0,0))
@@ -64,6 +66,7 @@ def main():
             pg.display.update()
             time.sleep(5)
             return
+            
 
         screen.blit(bg_img, [0, 0]) 
 
